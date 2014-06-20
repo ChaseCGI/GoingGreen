@@ -1,0 +1,5 @@
+Database Schema Rationale
+
+* PersonID is primary key instead of FirstName + LastName composite key because names sometimes overlap within the same company.
+* The Person table is in 2NF due to inclusion of the WillDrive field being a calculated field and stored in the database, rather than just determining it in code.
+	The group table, however, is in 3NF.
