@@ -1,0 +1,59 @@
+Person
+--------------------------------------------
+-strLastName:string
+-strFirstName:string
+-strVehicleType:string
+-strCarDesc:string
+-intMaxPassengers:int
+-strAddressStreet:string
+-strAddressCity:string
+-strAddressState:string
+-intAddressZip:int
+-timeStartWorkTime:time
+-timeLeaveWorkTime:time
+-bolWillDrive:boolean
+-strPhoneNum:string
+-listBolDriveDays:list<boolean>
+-grpArriveWith:Group
+-grpDepartWith:Group
+-------------------------------------------
++Person()
++Person(all data members)
++editProfile(Person):void
++doesDrive():boolean
++doesDrive(int):boolean //int refers to the enumeration value for a day we're passing in.
++joinGroup(Group):void
++leaveGroup(Group):void
+
+
+Group
+-------------------------------------------
+-addressStreet
+-addressCity
+-addressState
+-addressZip
+-members:list<Person>
+-dateOfCarpool:date
+-departDestinationTime:time
+-departMeetTime:time
+-driver:Person
+-------------------------------------------
++Group()
++Group(all data members)
++addMember(Person):void
++removeMember(Person):void
++notifyDriver():void
++assignDriver():void
+
+
+Main
+-------------------------------------------
+-daysOfWeek:enum
+-maxPassengers:int
+-milesPergal:float
+-distanceTraveled:float
+-costOfGas:float
+-------------------------------------------
++populateMap(Google Map Stuff):void
++drawRoute(Google Map Stuff):void
++calcCost(float, float, int, float):float
