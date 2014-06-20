@@ -3,7 +3,10 @@
 
 public class Person
 {
-	string fName;
+	//public enum Day { SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY };
+
+	
+	string strFName;
 	string lName;
 	string address;
 	string phoneNo;
@@ -33,7 +36,7 @@ public class Person
 		departWith = new Group();
 	}
 	
-	//constructor for 
+	//constructor for users not willing or able to drive.
 	public Person(string fName, string lName, string address, string phoneNo, 
 					Time startTime, Time leaveTime, string vehicleType,
 					int maxPassengers)
@@ -52,6 +55,7 @@ public class Person
 		departWith = new Group();
 	}
 	
+	//constructor for user willing and able to drive
 	public Person(string fName, string lName, string address, string phoneNo, 
 					Time startTime, Time leaveTime, string vehicleType,
 					int maxPassengers, array<bool> driveDays)
@@ -67,5 +71,31 @@ public class Person
 		willDrive = true;
 		for(i = 0 -> 7)
 			this.driveDays[i] = driveDays[i];
+	}
+	
+	public void editProfile(string fName, string lName, string address, string phoneNo, 
+					Time startTime, Time leaveTime, string vehicleType,
+					int maxPassengers, bool willDrive array<bool> driveDays)
+	{
+		Person(fName, lName, address, phoneNo, startTime, leaveTime, vehicleType, maxPassengers, driveDays);
+		this.willDrive = willDrive;
+	}
+	
+	public bool doesDrive()
+	{
+		return willDrive;
+	}
+	
+	public bool doesDrive(int day)
+	{
+		if(driveDays[day] == 1)
+			return true;
+		else
+			return false;
+	}
+	
+	public void joinGroup(Group group)
+	{
+		
 	}
 }
