@@ -6,96 +6,129 @@ public class Person
 	//public enum Day { SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY };
 
 	
-	string strFName;
-	string lName;
-	string address;
-	string phoneNo;
-	Time startTime;
-	Time leaveTime;
-	string vehicleType;
-	int maxPassengers;
-	bool willDrive;
-	array<bool> driveDays;
-	Group arriveWith;
-	Group departWith;
+	string strFirstName;
+	string strLastName;
+	string strAddressStreet;
+	string strAddressCity;
+	string strAddressZip;
+	string strAddressState;
+	string strPhoneNum;
+	Time strStartWork;
+	Time strLeaveWork;
+	string strVehicleType;
+	int intMaxPassengers;
+	bool bolWillDrive;
+	list<bool> listBolDriveDays;
+	Group grpArriveWith;
+	Group grpDepartWith;
 	
 	//default constructor
 	public Person()
 	{
-		fName = "";
-		lName = "";
-		address = '';
-		phoneNo = "";
-		startTime = new Time(0,0,0);
-		leaveTime = new Time(0,0,0);
-		vehicleType = "";
-		maxPassengers = 0;
-		willDrive = false;
-		driveDays = {0, 0, 0, 0, 0, 0, 0};
-		arriveWith = new Group();
-		departWith = new Group();
+		strFirstName = "";
+		strLastName = "";
+		strAddressStreet = "";
+		string strAddressCity = "";
+		string strAddressZip = "";
+		string strAddressState = "";
+		strPhoneNum = "";
+		strStartWork = new Time(0,0,0);
+		strLeaveWork = new Time(0,0,0);
+		strVehicleType = "";
+		intMaxPassengers = 0;
+		bolWillDrive = false;
+		listBolDriveDays = {0, 0, 0, 0, 0, 0, 0};
+		grpArriveWith = new Group();
+		grpDepartWith = new Group();
 	}
 	
 	//constructor for users not willing or able to drive.
-	public Person(string fName, string lName, string address, string phoneNo, 
-					Time startTime, Time leaveTime, string vehicleType,
-					int maxPassengers)
+	public Person(string strFirstName, string strLastName, string strAddressStreet,
+					string strAddressCity, string strAddressZip, string strAddressState, 
+					string strPhoneNum, Time strStartWork, Time strLeaveWork, 
+					string strVehicleType, int intMaxPassengers)
 	{
-		this.fName = fName;
-		this.lName = lName;
-		this.address = address;
-		this.phoneNo = phoneNo;
-		this.startTime = startTime;
-		this.leaveTime = leaveTime;
-		this.vehicleType = vehicleType;
-		this.maxPassengers = maxPassengers;
-		willDrive = false;
-		driveDays = {0, 0, 0, 0, 0, 0, 0};
-		arriveWith = new Group();
-		departWith = new Group();
+		this.strFirstName = strFirstName;
+		this.strLastName = strLastName;
+		this.strAddressStreet = strAddressStreet;
+		this.strAddressCity = strAddressCity;
+		this.strAddressZip = strAddressZip;
+		this.strAddressState = strAddressState;
+		this.strPhoneNum = strPhoneNum;
+		this.strStartWork = strStartWork;
+		this.strLeaveWork = strLeaveWork;
+		this.strVehicleType = strVehicleType;
+		this.intMaxPassengers = intMaxPassengers;
+		bolWillDrive = false;
+		listBolDriveDays = {0, 0, 0, 0, 0, 0, 0};
+		grpArriveWith = new Group();
+		grpDepartWith = new Group();
 	}
 	
 	//constructor for user willing and able to drive
-	public Person(string fName, string lName, string address, string phoneNo, 
-					Time startTime, Time leaveTime, string vehicleType,
-					int maxPassengers, array<bool> driveDays)
+	public Person(string strFirstName, string strLastName, string strAddressStreet,
+					string strAddressCity, string strAddressZip, string strAddressState, 
+					string strPhoneNum, Time strStartWork, Time strLeaveWork, 
+					string strVehicleType, int intMaxPassengers, bool bolWillDrive,
+					list listBolDriveDays)
 	{
-		this.fName = fName;
-		this.lName = lName;
-		this.address = address;
-		this.phoneNo = phoneNo;
-		this.startTime = startTime;
-		this.leaveTime = leaveTime;
-		this.vehicleType = vehicleType;
-		this.maxPassengers = maxPassengers;
-		willDrive = true;
+		this.strFirstName = strFirstName;
+		this.strLastName = strLastName;
+		this.strAddressStreet = strAddressStreet;
+		this.strAddressCity = strAddressCity;
+		this.strAddressZip = strAddressZip;
+		this.strAddressState = strAddressState;
+		this.strPhoneNum = strPhoneNum;
+		this.strStartWork = strStartWork;
+		this.strLeaveWork = strLeaveWork;
+		this.strVehicleType = strVehicleType;
+		this.intMaxPassengers = intMaxPassengers;
+		bolWillDrive = true;
 		for(i = 0 -> 7)
-			this.driveDays[i] = driveDays[i];
+			this.listBolDriveDays[i] = listBolDriveDays[i];
 	}
 	
-	public void editProfile(string fName, string lName, string address, string phoneNo, 
-					Time startTime, Time leaveTime, string vehicleType,
-					int maxPassengers, bool willDrive array<bool> driveDays)
+	public void editProfile(string strFirstName, string strLastName, string strAddressStreet, string strPhoneNum, 
+					Time strStartWork, Time strLeaveWork, string strVehicleType,
+					int intMaxPassengers, bool bolWillDrive array<bool> listBolDriveDays)
 	{
-		Person(fName, lName, address, phoneNo, startTime, leaveTime, vehicleType, maxPassengers, driveDays);
-		this.willDrive = willDrive;
+		Person(strFirstName, strLastName, strAddressStreet, strPhoneNum, strStartWork, strLeaveWork, strVehicleType, intMaxPassengers, listBolDriveDays);
+		this.bolWillDrive = bolWillDrive;
 	}
 	
 	public bool doesDrive()
 	{
-		return willDrive;
+		return bolWillDrive;
 	}
 	
 	public bool doesDrive(int day)
 	{
-		if(driveDays[day] == 1)
+		if(listBolDriveDays[day] == 1)
 			return true;
 		else
 			return false;
 	}
 	
-	public void joinGroup(Group group)
+	public void joinArrivalGroup(Group group)
 	{
-		
+		this.grpArriveWith = group;
 	}
+	
+	public void joinDepartGroup(Group group)
+	{
+		this.grpDepartWith = group;
+	}
+	
+	public void leaveArrivalGroup(Group group)
+	{
+		this.grpArriveWith = "";
+	}
+	
+	public void leaveDepartGroup(Group group)
+	{
+		this.grpDepartWith = "";
+	}
+	
+	
+	
 }

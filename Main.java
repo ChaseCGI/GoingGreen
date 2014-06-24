@@ -7,6 +7,9 @@ class Carpool()
 {
 	public static void main(String[] args]
 	{
+		float fltMPG;
+		float fltDistanceTrav;
+		float fltGasCostPerGal;
 		public enum Day
 		{
 			SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY
@@ -14,6 +17,7 @@ class Carpool()
 		
 		public void populateMap()
 		{
+			
 		}
 		
 	}
