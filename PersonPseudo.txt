@@ -1,0 +1,59 @@
+
+
+class Person
+
+	declare variables
+		bolWillDrive
+		grpArriveWith
+		grpDepartWith
+		intmaxPassengers
+		listBolDriveDay
+		strAddressStreet
+		strAddressCity
+		strAddressState
+		strAddressZip
+		strFirstName
+		strLastName
+		strPhoneNum
+		strVehicleType
+		timeStartWork
+		timeLeaveWork
+	end variables
+	
+	//Constructor for non drivers
+	Person1(...)
+		set name
+		set phone
+		set address
+		set work times
+	end Person
+	
+	//Constructor if willing to drivers
+	Person2(...)
+		set name
+		set phone
+		set address
+		set work times
+		set willDrive to true
+		set maxPassengers
+		set driveDays
+	end Person
+	
+	//setters and getters
+	
+	editProfile(..., willDrive)
+		//Use the second constructor to edit user's profile
+		Person2(...)
+		set willDrive
+	end editProfile
+	
+	doesDrive()
+		check if willDrive is true
+	end doesDrive
+	
+	doesDrive(day)
+		check if listBolDriveDay[day] equals 1
+	end doesDrive
+	
+	
+	

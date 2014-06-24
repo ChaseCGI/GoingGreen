@@ -1,0 +1,44 @@
+
+
+class Group
+
+	declare variables
+		listPerMembers
+		listPerDriveSchedule
+		perDriver
+		strAddressStreet
+		strAddressCity
+		strAddressState
+		strAddressZip
+		timeDepartWork
+		timeDepartMeeting
+	end variables
+	
+	//constructor
+	Group(...)
+		set driver
+		set meeting address
+		add driver to listPerMembers
+		set timeDepartMeeting
+		set timeDepartWork
+	end Group
+	
+	//setters and getters
+	
+	addMember(Person)
+		add Person to listPerMembers
+	end addMember
+	
+	removeMember(Person)
+		remove Person from listPerMembers
+	end removeMember
+	
+	notifyDriver()
+		define notification ID
+		define time object for 9PM
+		create NotificationManager object
+		create Notification object with drawable art, title, and time to be triggered as parameters
+		create Intent that will launch app when tapped
+		define setLastestInfo with leaving message and intent to call as parameters
+		call Notify object through NotificationManager object
+	end notifyDriver
