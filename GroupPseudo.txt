@@ -33,6 +33,10 @@ class Group
 		remove Person from listPerMembers
 	end removeMember
 	
+	editSchedule(Person, day)
+		set day in list to Person
+	end editSchedule
+	
 	notifyDriver()
 		define notification ID
 		define time object for 9PM
@@ -42,3 +46,5 @@ class Group
 		define setLastestInfo with leaving message and intent to call as parameters
 		call Notify object through NotificationManager object
 	end notifyDriver
+	
+end Group
