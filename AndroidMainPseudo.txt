@@ -11,13 +11,13 @@ Main
 		officeLocation //defined in lat and long coords
 	end variables
 	
-	convertAddress(fullAddress)
+	list<float> convertAddress(fullAddress)
 		define latitude from fullAddress.getLatitude()
 		define longitude from fullAddress.getLongitude()
 		return array of size 2 of latitude and longitude
 	endConvertAddress
 	
-	populateMap()
+	void populateMap()
 		set new view via Activity
 		create MapFragment object
 		create FragmentTransaction object
@@ -37,7 +37,7 @@ Main
 		end for
 	end populateMap
 	
-	calculateDistance(lat1, lon1, lat2, lon2)
+	float calculateDistance(lat1, lon1, lat2, lon2)
 	set radius of earth to 6371
 	find difference dLat of lat2 minus lat1
 	convert to radians
@@ -50,7 +50,7 @@ Main
 	end calculateDistance
 	
 	
-	drawRoute(group, driver)
+	void drawRoute(group)
 		
 		create two groupLists
 		call populateMap
@@ -86,7 +86,7 @@ Main
 		
 	end drawRoute
 	
-	calculateCost(passengers, mpg, distance, pricePerGal)
+	float calculateCost(passengers, mpg, distance, pricePerGal)
 		cost equals (((distance / mpg) * pricePerGal) / passengers) * 1.20 //tip
 		return cost
 	end calculateCost

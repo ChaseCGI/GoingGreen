@@ -3,12 +3,12 @@
 class Person
 
 	declare variables
-		enum status {REQUEST, PENDING, JOINED}
-		bolWillDrive
+		enuStatus {REQUESTED, PENDING, JOINED}
 		grpArriveWith
 		grpDepartWith
 		intmaxPassengers
 		listBolDriveDay
+		listGrpGroupLead
 		strUserName
 		strAddressStreet
 		strAddressCity
@@ -18,44 +18,32 @@ class Person
 		strLastName
 		strPhoneNum
 		strVehicleType
-		timeStartWork
-		timeLeaveWork
 		bolPendingArrival
 		bolPendingDepart
 	end variables
 	
-	//Constructor for non drivers
-	Person1(...)
-		set name
-		set user name
-		set phone
-		set address
-		set work times
-		set pending status to false
-	end Person
-	
 	//Constructor if willing to drivers
-	Person2(...)
+	Person(...)
 		set name
 		set user name
 		set phone
 		set address
 		set work times
-		set willDrive to true
 		set maxPassengers
 		set driveDays
 		set pending status to false
+		for length of 2
+			set listGrpGroupLead[index] equal to null
 	end Person
 	
 	//setters and getters
 	
-	editProfile(..., willDrive)
-		//Use the second constructor to edit user's profile
-		Person2(...)
-		set willDrive
+	void editProfile(..., willDrive)
+		//Use the constructor to edit user's profile
+		Person(...)
 	end editProfile
 	
-	deleteProfile()
+	void deleteProfile()
 		if you are driver of grpArriveWith
 			if group has only one member
 				call grpArriveWith.deleteGroup(grpArriveWith)
@@ -75,39 +63,15 @@ class Person
 		delete profile by setting 'this' equal to null
 	end deleteProfile
 	
-	doesDrive()
-		check if willDrive is true
-	end doesDrive
-	
-	doesDrive(day)
-		check if listBolDriveDay[day] equals 1
-	end doesDrive
-	
-	joinArrivalGroup(Group)
-		grpArriveWith = Group
-	end joinArrivalGroup
-	
-	leaveArrivalGroup()
-		grpArriveWith = null
-	end leaveArrivalGroup
-	
-	joinDepartGroup(Group)
-		grpDepartWith = Group
-	end joinDepartGroup
-	
-	leaveDepartGroup()
-		grpDepartWith = null;
-	end leaveDepartGroup
-	
-	changePendingStatus(Group, groupType, buttonID)
+	void changePendingStatus(Group, groupType, buttonID)
 		if groupType is arrival
 			if buttonID is REQUEST
-				call joinArrivalGroup
+				join Group
 				set bolPendingArrival to true
 			end if
 			else if buttonID is PENDING
 				set bolPendingArrival to false
-				call leaveArrivalGroup
+				leave Group
 			end else if
 			else
 				set bolPendingArrival to false
@@ -116,12 +80,12 @@ class Person
 		end if
 		else
 			if buttonID is REQUEST
-				call joinDepartGroup
+				join Group
 				set bolPendingDepart to true
 			end if
 			else if buttonID is PENDING
 				set bolPendingDepart to false
-				call leaveDepartGroup
+				leave Group
 			end else if
 			else
 				set bolPendingDepart to false
@@ -130,12 +94,12 @@ class Person
 		end else
 	end changePendingStatus
 	
-	getFullName()
+	string getFullName()
 		concatenate strFirstName + strLastName
 		return fullName
 	end getFullName
 	
-	getFullAddress()
+	string getFullAddress()
 		concatenate Street + City + State + Zip
 		return fullAddress
 	end getFullAddress

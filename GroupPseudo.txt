@@ -5,7 +5,6 @@ class Group
 	declare variables
 		listPerMembers
 		listPerDriveSchedule
-		perDriver
 		strAddressStreet
 		strAddressCity
 		strAddressState
@@ -16,7 +15,7 @@ class Group
 	
 	//constructor
 	Group(...)
-		set driver
+	set leader
 		set meeting address
 		add driver to listPerMembers
 		set timeDepartMeeting
@@ -25,27 +24,23 @@ class Group
 	
 	//setters and getters
 	
-	addMember(Person)
+	void addMember(Person)
 		add Person to listPerMembers
 	end addMember
 	
-	removeMember(Person)
+	void removeMember(Person)
 		remove Person from listPerMembers
 	end removeMember
 	
-	editSchedule(Person, day)
+	void assignDriver(Person, day)
 		set day in list to Person
 	end editSchedule
-	
-	appointDriver(Person)
-		set driver to Person
-	end appointDriver
 	
 	deleteGroup()
 		delete Group by setting 'this' to null
 	end deleteGroup
 	
-	leaveNow()
+	void leaveNow()
 		set new Intent for new view
 		set Type to sms-mms
 		add phone numbers of all group members
@@ -53,21 +48,21 @@ class Group
 		start Intent
 	end leaveNow
 	
-	messageMember
+	void messageMember
 		set Intent for new view
 		set type to sms-mms
 		add member phone numbers
 		start Intent
 	end messageMember
 	
-	messageGroup
+	void messageGroup
 		set Intent for new view
 		set type to sms-mms
 		add phone numbers of all group members
 		start Intent
 	end messageGroup
 	
-	notifyDriver()
+	void notifyDriver()
 		define notification ID
 		define time object for 9PM
 		create NotificationManager object
