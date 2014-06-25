@@ -1,0 +1,87 @@
+import GoogleMaps API
+
+Main
+	declare variables
+		enuDays // 0 - Sunday, 1 - Monday, etc.
+		intPassengers
+		fltMPG
+		fltDistance
+		fltCostPerGal
+		listPerUsers
+		officeLocation //defined in lat and long coords
+	end variables
+	
+	convertAddress(fullAddress)
+		define latitude from fullAddress.getLatitude()
+		define longitude from fullAddress.getLongitude()
+		return array of size 2 for latitude and longitude
+	endConvertAddress
+	
+	populateMap()
+		set new view via Activity
+		create MapFragment object
+		create FragmentTransaction object
+		begin transaction with getFragmentManager().beginTransaction()
+		add our MapFragment to the container via FragmentTransaction
+		create GoogleMapOptions object
+		set initial view to target area via GoogleMapOptions
+		commit MapFragment to the Activity via FragmentTransaction
+		//at this point the map is on the screen
+		
+		//now populate the map with user addresses
+		for length of listPerUsers
+			declare array of size 2 called coords
+			get fullAddress for listPerUsers[index]
+			set coords to convertAddress(fullAddress)
+			add marker with MapFragment.addMarker with coords and and listPerUsers[index].Name as parameters
+		end for
+	end populateMap
+	
+	calculateDistance(lat1, lon1, lat2, lon2)
+	set radius of earth to 6371
+	find difference dLat of lat2 minus lat1
+	convert to radians
+	find difference of dLon lon2 minus lon1
+	convert to radians
+	calculate value1 of [sin(dLat/2) * sin(dLat/2)] + [cos(toRadians(lat1)) * cos(toRadians(lat2)) * sin(dLon/2) * sin(dLon/2)]
+	calculate value2 of 2 * arcsin(sqrt(value))
+	calculate result of radiusOfEarth * value2
+	return result
+	end calculateDistance
+	
+	
+	drawRoute(group, driver)
+		
+		create two groupLists
+		call populateMap
+		deep copy group member list data to new groupList1
+		add Driver to groupList2
+		remove driver from groupList1
+		set count equal to 0
+		while groupList1 is not empty
+			for length of groupList1
+				find closestMember to groupList2[count]
+			end for
+			add closestMember to groupList2
+			remove closestMember from groupList1
+			add 1 to count
+		end while
+		for length of (groupList2 - 1)
+			declare PolyLine object
+			add polyLine between groupList[index] coords and groupList[index+1] coords
+		end for
+		//simple route is now on screen
+		
+		create Intent for our activity
+		build url starting with "http://maps.google.com/maps?f=d&hl=en"
+		append "&saddr=" with start coords
+		append "&daddr=" with destination coords
+		repeat for all group members changing the previous destination for starting coords and the next member in the list to destination coords
+		parse this URL for drivig instructions
+		
+	end drawRoute
+	
+	calculateCost(passengers, mpg, distance, pricePerGal)
+		cost equals (((distance / mpg) * pricePerGal) / passengers) * 1.20 //tip
+		return cost
+	end calculateCost

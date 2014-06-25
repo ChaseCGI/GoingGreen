@@ -55,5 +55,32 @@ class Person
 		check if listBolDriveDay[day] equals 1
 	end doesDrive
 	
+	joinArrivalGroup(Group)
+		grpArriveWith = Group
+	end joinArrivalGroup
 	
+	leaveArrivalGroup()
+		grpArriveWith = null
+	end leaveArrivalGroup
+	
+	joinDepartGroup(Group)
+		grpDepartWith = Group
+	end joinDepartGroup
+	
+	leaveDepartGroup()
+		grpDepartWith = null;
+	end leaveDepartGroup
+	
+	getFullName()
+		concatenate strFirstName + strLastName
+		return fullName
+	end getFullName
+	
+	getFullAddress()
+		concatenate Street + City + State + Zip
+		return fullAddress
+	end getFullAddress
+	
+	
+end Person
 	
