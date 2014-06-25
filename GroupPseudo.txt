@@ -37,6 +37,36 @@ class Group
 		set day in list to Person
 	end editSchedule
 	
+	appointDriver(Person)
+		set driver to Person
+	end appointDriver
+	
+	deleteGroup()
+		delete Group by setting 'this' to null
+	end deleteGroup
+	
+	leaveNow()
+		set new Intent for new view
+		set Type to sms-mms
+		add phone numbers of all group members
+		add message body "Leaving now at" + systemTime.toString
+		start Intent
+	end leaveNow
+	
+	messageMember
+		set Intent for new view
+		set type to sms-mms
+		add member phone numbers
+		start Intent
+	end messageMember
+	
+	messageGroup
+		set Intent for new view
+		set type to sms-mms
+		add phone numbers of all group members
+		start Intent
+	end messageGroup
+	
 	notifyDriver()
 		define notification ID
 		define time object for 9PM

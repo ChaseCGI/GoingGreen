@@ -14,7 +14,7 @@ Main
 	convertAddress(fullAddress)
 		define latitude from fullAddress.getLatitude()
 		define longitude from fullAddress.getLongitude()
-		return array of size 2 for latitude and longitude
+		return array of size 2 of latitude and longitude
 	endConvertAddress
 	
 	populateMap()
@@ -31,7 +31,7 @@ Main
 		//now populate the map with user addresses
 		for length of listPerUsers
 			declare array of size 2 called coords
-			get fullAddress for listPerUsers[index]
+			get fullAddress of listPerUsers[index]
 			set coords to convertAddress(fullAddress)
 			add marker with MapFragment.addMarker with coords and and listPerUsers[index].Name as parameters
 		end for
@@ -66,16 +66,21 @@ Main
 			remove closestMember from groupList1
 			add 1 to count
 		end while
-		for length of (groupList2 - 1)
-			declare PolyLine object
+		for length of (groupList2)
+		declare PolyLine object
+		if index equals length
+			add polyLine between groupList2[index] to officeLocation
+		end if
+		else
 			add polyLine between groupList[index] coords and groupList[index+1] coords
+		end else
 		end for
 		//simple route is now on screen
 		
 		create Intent for our activity
 		build url starting with "http://maps.google.com/maps?f=d&hl=en"
-		append "&saddr=" with start coords
-		append "&daddr=" with destination coords
+		append "&saddr=" + start coords
+		append "&daddr=" + destination coords
 		repeat for all group members changing the previous destination for starting coords and the next member in the list to destination coords
 		parse this URL for drivig instructions
 		

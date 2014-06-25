@@ -3,11 +3,13 @@
 class Person
 
 	declare variables
+		enum status {REQUEST, PENDING, JOINED}
 		bolWillDrive
 		grpArriveWith
 		grpDepartWith
 		intmaxPassengers
 		listBolDriveDay
+		strUserName
 		strAddressStreet
 		strAddressCity
 		strAddressState
@@ -18,25 +20,31 @@ class Person
 		strVehicleType
 		timeStartWork
 		timeLeaveWork
+		bolPendingArrival
+		bolPendingDepart
 	end variables
 	
 	//Constructor for non drivers
 	Person1(...)
 		set name
+		set user name
 		set phone
 		set address
 		set work times
+		set pending status to false
 	end Person
 	
 	//Constructor if willing to drivers
 	Person2(...)
 		set name
+		set user name
 		set phone
 		set address
 		set work times
 		set willDrive to true
 		set maxPassengers
 		set driveDays
+		set pending status to false
 	end Person
 	
 	//setters and getters
@@ -46,6 +54,26 @@ class Person
 		Person2(...)
 		set willDrive
 	end editProfile
+	
+	deleteProfile()
+		if you are driver of grpArriveWith
+			if group has only one member
+				call grpArriveWith.deleteGroup(grpArriveWith)
+			end if
+			else
+				appoint new driver to group
+			end else
+		end if
+		if you are driver of grpDepartWith
+			if group has only one member
+				call grpDepartWithWith.deleteGroup(grpDepartWithWith)
+			end if
+			else
+				appoint new driver to group
+			end else		
+		end if
+		delete profile by setting 'this' equal to null
+	end deleteProfile
 	
 	doesDrive()
 		check if willDrive is true
@@ -70,6 +98,37 @@ class Person
 	leaveDepartGroup()
 		grpDepartWith = null;
 	end leaveDepartGroup
+	
+	changePendingStatus(Group, groupType, buttonID)
+		if groupType is arrival
+			if buttonID is REQUEST
+				call joinArrivalGroup
+				set bolPendingArrival to true
+			end if
+			else if buttonID is PENDING
+				set bolPendingArrival to false
+				call leaveArrivalGroup
+			end else if
+			else
+				set bolPendingArrival to false
+				call grpArriveWith.addMember(this)
+			end else
+		end if
+		else
+			if buttonID is REQUEST
+				call joinDepartGroup
+				set bolPendingDepart to true
+			end if
+			else if buttonID is PENDING
+				set bolPendingDepart to false
+				call leaveDepartGroup
+			end else if
+			else
+				set bolPendingDepart to false
+				call grpDepartWith.addMember(this)
+			end else
+		end else
+	end changePendingStatus
 	
 	getFullName()
 		concatenate strFirstName + strLastName
